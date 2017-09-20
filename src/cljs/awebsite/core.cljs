@@ -3,9 +3,10 @@
             [awebsite.pages.mainpage.mainpage :refer [MainPage]]
             [awebsite.pages.page404 :refer [Page404]]
             [awebsite.pages.loadingpage :refer [LoadingPage]]
+            [awebsite.router.router :as router]
+            [awebsite.browsereventlisteners :as bels]
+            [awebsite.handlers :as handlers]
             [awebsite.db :as mydb]))
-
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Page
@@ -34,5 +35,8 @@
 
 
 (defn ^:export main []
+  (router/init-routes)
   (dev-setup)
+  (handlers/init-states)
+  (bels/hook-event-listeners)
   (reload))

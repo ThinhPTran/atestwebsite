@@ -2,6 +2,10 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.229"]
                  [com.fzakaria/slf4j-timbre "0.3.7"]
+                 [secretary "1.2.3" :exclusions [org.clojure/tools.reader]]
+                 [cljsjs/bootstrap "3.3.6-1"]
+                 [cljsjs/bootstrap-slider "7.0.1-0"]
+                 [cljsjs/highcharts "5.0.4-0"]
                  [reagent "0.6.1"]]
 
   :min-lein-version "2.5.3"
@@ -10,7 +14,8 @@
 
   :plugins [[lein-cljsbuild "1.1.4" :exclusions [org.clojure/clojure]]
             [deraen/lein-sass4clj "0.3.1"]
-            [lein-asset-minifier "0.3.2" :exclusions [org.clojure/clojure]]]
+            [lein-asset-minifier "0.3.2" :exclusions [org.clojure/clojure]]
+            [lein-pdo "0.1.1"]]
 
   :clean-targets ^{:protect false} ["resources/public/js"
                                     "target"]
@@ -44,7 +49,7 @@
                     :elide-asserts   true
                     :externs ["src/js/externs/adminlte.ext.js"]
                     :closure-defines {goog.DEBUG false}
-                    :pretty-print    false}}]}
+                    :pretty-print    true}}]}
 
   :sass {:source-paths ["src/css"]
          :target-path "target/css"
