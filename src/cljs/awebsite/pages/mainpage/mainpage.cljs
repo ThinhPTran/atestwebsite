@@ -2,6 +2,8 @@
   (:require [awebsite.db :as mydb]
             [awebsite.pages.mainpage.subs :as mainpagesubs]
             [awebsite.pages.mainpage.handlers :as mainpagehandlers]
+            [awebsite.pages.htmlpage.htmlpage :refer [HtmlPage]]
+            [awebsite.pages.csspage.csspage :refer [CssPage]]
             [clojure.string :as str]
             [reagent.core :as reagent]))
 
@@ -44,16 +46,26 @@
     ;    {:type "submit", :name "search"}]]]]
 
     [:ul.sidebar-menu
-     ;[:li.header "Content"]
-     [:li.active
+;;      [:li.header "Content"]
+     [:li.treeview
       [:a {:href "#"
-           :onClick #(mainpagehandlers/set-main-page-content :dataanalysis)}
-       [:i.fa.fa-laptop]
-       [:span "Data Analysis"]]
+           :onClick #(do
+                       (.log js/console "Click HTML")
+                       (mainpagehandlers/set-main-page-content :html :html-home))}
+       [:i.fa.fa-circle-o]
+       [:span "HTML"]]
+      [:ul.treeview-menu
+       [:li.treeview
+        [:a {:href "#"}
+         [:i.fa.fa-circle-o]
+         [:span "HTML Home"]]]]]
+     [:li.treeview
       [:a {:href "#"
-           :onClick #(mainpagehandlers/set-main-page-content :dataimporter)}
-       [:i.fa.fa-upload.fa-lg]
-       [:span "Data Importer"]]]]]])
+           :onClick #(do
+                       (.log js/console "Click CSS")
+                       (mainpagehandlers/set-main-page-content :css :css-home))}
+       [:i.fa.fa-circle-o]
+       [:span "CSS"]]]]]])
 
 (defn- RightSidebar
   "Right sidebar (control sidebar) from AdminLTE html template"
@@ -91,23 +103,25 @@
            (if (:left-sidebar mainpageoption)
              (wrapper-div-class screen-size left-sidebar-on?)
              "wrapper")}
+
      ;; Navbar
      (when (:nav-bar mainpageoption)
        [:header.main-header
         [Logo]
         [Navbar]])
+
      ;; Left sidebar
      (when (:left-sidebar mainpageoption)
        [LeftSidebar])
+
      ;; Main content
      [:div {:class (str/join " "
                              ["content-wrapper"
                               (when-not (:left-sidebar mainpageoption)
-                                "content-wrapper-no-sidebar")])}]
-;;       (cond
-;;         (= :welloverview content) [WellOverview]
-;;         (= :dataanalysis content) [DataAnalysis]
-;;         (= :dataimporter content) [DataImporter])]
+                                "content-wrapper-no-sidebar")])}
+      (cond
+        (= :html content) [HtmlPage]
+        (= :css content) [CssPage])]
 
      ;; Footer
      (when (:footer mainpageoption)

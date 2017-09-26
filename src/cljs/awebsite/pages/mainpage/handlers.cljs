@@ -11,8 +11,9 @@
 (defn set-main-page-option []
   (swap! mydb/app-state assoc-in [:pages :mainpage :options] default-options))
 
-(defn set-main-page-content [content]
-  (swap! mydb/app-state assoc-in [:pages :mainpage :content] content))
+(defn set-main-page-content [content subcontent]
+  (swap! mydb/app-state assoc-in [:pages :mainpage :content] content)
+  (swap! mydb/app-state assoc-in [:pages :mainpage :subcontent] subcontent))
 
 (defn toggle-left-sidebar []
   (.log js/console "Toggling")

@@ -24,4 +24,4 @@
 (defn init-states []
   (set-window-size)
   (mainpagehandler/set-main-page-option)
-  (mainpagehandler/set-main-page-content :dataanalysis))
+  (mainpagehandler/set-main-page-content :html :html-home))
