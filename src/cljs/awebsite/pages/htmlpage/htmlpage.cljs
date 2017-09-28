@@ -82,7 +82,23 @@
    [:p [:strong "Then open a new document to place the code."]]
    [:hr]
    [:h2 "Step 2: Write Some HTML"]
-   [:p "Write or copy some HTML into Notepad."]])
+   [:p "Write or copy some HTML into Notepad."]
+   [:hr]
+   [:h2 "Step 3: Save the HTML Page"]
+   [:p "Save the file on your computer. Select "
+    [:strong "File > Save as"]
+    "in the Notepad menu."]
+   [:p "Name the file "
+    [:strong "\"index.html\""]
+    " and set the encoding to "
+    [:strong "UTF-8"]
+    " (which is the preferred encoding for HTML files)."]
+   [:p
+    [:strong "You can use either .htm or .html as file extension. There is no difference, it is up to you."]]
+   [:hr]
+   [:h2 "Step 4: View the HTML Page in Your Browser"]
+   [:p "Open the saved HTML file in your favourite browser (double click on the file, or right-click - and choose \"Open with\")."]
+   [:p "The result will look much like this:"]])
 
 (defn HtmlPage
   []
