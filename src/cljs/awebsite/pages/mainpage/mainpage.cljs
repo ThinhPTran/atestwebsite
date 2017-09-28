@@ -24,6 +24,16 @@
    [:div.navbar-custom-menu
     [:ul.nav.navbar-nav]]])
 
+(defn- AnItem
+  [content subcontent text]
+  [:li.treeview
+    [:a {:href "#"
+         :onClick #(do
+                     (.log js/console (str "Click " content subcontent))
+                     (mainpagehandlers/set-main-page-content content subcontent))}
+      [:i.fa.fa-circle-o]
+      [:span text]]])
+
 (defn- LeftSidebar
   "Left side bar from AdminLTE HTML template"
   []
@@ -55,17 +65,20 @@
        [:i.fa.fa-circle-o]
        [:span "HTML"]]
       [:ul.treeview-menu
-       [:li.treeview
-        [:a {:href "#"}
-         [:i.fa.fa-circle-o]
-         [:span "HTML Home"]]]]]
+       [AnItem :html :html-home "HTML Home"]
+       [AnItem :html :html-introduction "HTML Introduction"]
+       [AnItem :html :html-editors "HTML Editors"]]]
      [:li.treeview
       [:a {:href "#"
            :onClick #(do
                        (.log js/console "Click CSS")
                        (mainpagehandlers/set-main-page-content :css :css-home))}
        [:i.fa.fa-circle-o]
-       [:span "CSS"]]]]]])
+       [:span "CSS"]]
+      [:ul.treeview-menu
+       [AnItem :css :css-home "CSS Home"]
+       [AnItem :css :css-introduction "CSS Introduction"]
+       [AnItem :css :css-syntax "CSS Syntax"]]]]]])
 
 (defn- RightSidebar
   "Right sidebar (control sidebar) from AdminLTE html template"

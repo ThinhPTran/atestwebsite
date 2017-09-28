@@ -5,6 +5,22 @@
             [clojure.string :as str]
             [reagent.core :as reagent]))
 
+(defn CssHome
+  []
+  [:div "Css Home"])
+
+(defn CssIntroduction
+  []
+  [:div "Css Introduction"])
+
+(defn CssSyntax
+  []
+  [:div "Css Syntax"])
+
 (defn CssPage
   []
-  [:div "Css main page"])
+  (let [subcontent (mainpagesubs/get-main-page-subcontent)]
+    (cond
+        (= :css-home subcontent) [CssHome]
+        (= :css-introduction subcontent) [CssIntroduction]
+        (= :css-syntax subcontent) [CssSyntax])))

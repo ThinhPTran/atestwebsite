@@ -7,3 +7,6 @@
 
 (defn get-main-page-content []
   (get-in @mydb/app-state [:pages :mainpage :content]))
+
+(defn get-main-page-subcontent []
+  (get-in @mydb/app-state [:pages :mainpage :subcontent]))
